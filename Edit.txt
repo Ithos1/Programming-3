@@ -1,0 +1,7 @@
+1)Toxic gas color changed to indigo
+2)Toxic gas can kill Armed man on contact
+3)Both meat-eaters and grass-eaters no longer reproduce if there's not enough food (Amount of predator<= Amount of prey/2)
+
+Edit 2:
+1)Minor fixes
+2)Changed some of the prompts
