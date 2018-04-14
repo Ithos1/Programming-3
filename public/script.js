@@ -1,3 +1,14 @@
+var Grass = require("./grass");
+var GrassEater = require("./GR-E");
+var MeatEater = require("./MT-E");
+var ArmedMan = require("./AR-M");
+var TimedBomb = require("./TB");
+var ToxicGas = require("./T-G");
+var Functions = require("./Functions");
+var RemoveFromArray = Functions.Func1;
+var Clear = Functions.Func2;
+
+
 type = prompt("1 - classic, 2 - custom, 3 - Grass simulation, 4 - Grass-eater simulation, 5 - Predator sim., 6 - Armed man sim., 7 - toxic bomb sim.");
 
 
