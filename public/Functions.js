@@ -10,11 +10,11 @@ module.exports = {
 
     Func2 : function Clear(directions){
         var ret = [];
-        for (i in directions) {
+        for (var i in directions) {
             if (directions[i][0] > -1 && directions[i][0] < x && directions[i][1] > -1 && directions[i][1] < y) {
                 ret.push(directions[i]);
             }
         }
         return ret;
     }
-}
+};

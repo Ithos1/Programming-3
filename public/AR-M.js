@@ -26,7 +26,7 @@ module.exports = class ArmedMan{
                                                             [this.x-3, this.y+4],   [this.x-2, this.y+4],   [this.x-1, this.y+4],   [this.x, this.y+4], [this.x+1, this.y+4],   [this.x+2, this.y+4],   [this.x+3, this.y+4],
                                                                                     [this.x-2, this.y+5],   [this.x-1, this.y+5],   [this.x, this.y+5], [this.x+1, this.y+5],   [this.x+2, this.y-5],
 
-        ]
+        ];
         var TargetNei = [];
         this.directions = Clear(this.directions);
         
@@ -37,7 +37,7 @@ module.exports = class ArmedMan{
                 }
             }
             if (TargetNei[0]){ return TargetNei; }
-            else{ this.o-- };
+            else{ this.o--; }
         }
         if(this.o == 2){
             for (var i in this.directions){
@@ -106,4 +106,4 @@ module.exports = class ArmedMan{
         matrix[this.y][this.x]=4;
     }
 
-}
+};

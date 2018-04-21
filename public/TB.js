@@ -18,7 +18,7 @@ module.exports = class TimedBomb{
                                                             [this.x-3, this.y+3],   [this.x-2, this.y+3],   [this.x-1, this.y+3],   [this.x, this.y+3], [this.x+1, this.y+3],   [this.x+2, this.y+3],   [this.x+3, this.y+3],
                                                                                     [this.x-2, this.y+4],   [this.x-1, this.y+4],   [this.x, this.y+4], [this.x+1, this.y+4],   [this.x+2, this.y+4]
 
-        ]
+        ];
         this.directions = Clear(this.directions);
     }
 
@@ -64,7 +64,7 @@ module.exports = class TimedBomb{
             [this.x-2,this.y],      [this.x-1,this.y],      [this.x,this.y],        [this.x+1,this.y],      [this.x+2,this.y],
             [this.x-2,this.y+2],    [this.x-1,this.y+2],    [this.x,this.y+2],      [this.x+1,this.y+2],    [this.x+2,this.y+2],                
                                     [this.x-1,this.y+1],    [this.x,this.y+1],      [this.x+1,this.y+1]
-        ]
+        ];
         this.directions = Clear(this.directions);
         for(var i in this.directions){
             matrix[this.directions[i][1]][this.directions[i][0]]=6;
@@ -73,4 +73,4 @@ module.exports = class TimedBomb{
         RemoveFromArray([this.x,this.y],Arr_TimedBomb);
     }
 
-}
+};

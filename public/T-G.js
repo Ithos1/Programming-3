@@ -69,4 +69,4 @@ module.exports = class ToxicGas {
         matrix[this.y][this.x]=6;
     }
 
-}
+};

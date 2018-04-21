@@ -55,7 +55,7 @@ module.exports = class MeatEater {
                 [this.x - 3, this.y],
                 [this.x, this.y + 3],
                 [this.x, this.y - 3]
-            ]
+            ];
         }
         this.TargetNei = [];
         this.directions = Clear(this.directions);
@@ -126,4 +126,4 @@ module.exports = class MeatEater {
         }
     }
 
-}
+};

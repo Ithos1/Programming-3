@@ -66,7 +66,7 @@ else if(type == 2){
 
     matrix = [];
     x = prompt("x?");
-    y = prompt("y?");;
+    y = prompt("y?");
     side = prompt("side?");
     o = prompt("How much Grass?"); //Starting grass count
     n = prompt("How many Grass-eaters?"); //Starting grass-eater count
@@ -228,15 +228,15 @@ function draw() {
     }
 
 //Toxic Gas
-    for (var i in Arr_ToxicGas){
+    for (i in Arr_ToxicGas){
         Arr_ToxicGas[i].Move();
     }
-    for (var i in Arr_ToxicGas){
+    for (i in Arr_ToxicGas){
         Arr_ToxicGas[i].Draw();
     }
 
 //Armed-Man
-    for (var i in Arr_ArmedMan){
+    for (i in Arr_ArmedMan){
         Arr_ArmedMan[i].Shoot();
         Arr_ArmedMan[i].Move();
     }
@@ -302,7 +302,7 @@ function draw() {
     
 
     //Meat-eater
-    for (var i in Arr_MeatEater) {
+    for (i in Arr_MeatEater) {
         Arr_MeatEater[i].Move();
         if (Arr_MeatEater[i].Target) {
             if (Arr_MeatEater[i].Energy <= 0) {
@@ -323,7 +323,7 @@ function draw() {
     }
 
     //Grass-eater
-    for (var i in Arr_GrassEater) {
+    for (i in Arr_GrassEater) {
         Arr_GrassEater[i].Move();
         if (Arr_GrassEater[i].Target) {
             if (Arr_GrassEater[i].Energy <= 0) {
@@ -343,7 +343,7 @@ function draw() {
     }
 
     //Grass
-    for (var i in Arr_Grass) {
+    for (i in Arr_Grass) {
         Arr_Grass[i].Count++;
         Arr_Grass[i].Spread();
     }
@@ -374,7 +374,7 @@ function draw() {
             }
     }
 
-    for (var i in Arr_TimedBomb){
+    for (i in Arr_TimedBomb){
         Arr_TimedBomb[i].explode();
     }
 
