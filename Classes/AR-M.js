@@ -1,3 +1,8 @@
+var Functions = require("./Functions");
+var RemoveFromArray = Functions.Func1;
+var Clear = Functions.Func2;
+
+
 module.exports = class ArmedMan{
     
     constructor(x1,y1, dir){

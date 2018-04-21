@@ -1,4 +1,10 @@
-module.exports = class ToxicGas {
+var Functions = require("./Functions");
+var RemoveFromArray = Functions.Func1;
+var Clear = Functions.Func2;
+
+var TimedBomb = require('./TB.js');
+
+class ToxicGas{
 
     constructor(x_y,dir){
         this.x=x_y[0];
