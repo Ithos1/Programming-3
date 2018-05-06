@@ -1,15 +1,10 @@
-var Functions = require("./Functions");
-var RemoveFromArray = Functions.Func1;
-var Clear = Functions.Func2;
-
 var parent = require("./parent.js");
 
 
 module.exports = class ArmedMan extends parent{
     
     constructor(x1,y1, dir){
-        this.x = x1;
-        this.y = y1;
+        super(x1,y1);
         this.Direction = dir;
 
         
@@ -20,22 +15,9 @@ module.exports = class ArmedMan extends parent{
 
         //Radius 5 circle
 
-        this.directions = [
-                                                                                    [this.x-2, this.y-5],   [this.x-1, this.y-5],   [this.x, this.y-5], [this.x+1, this.y-5],   [this.x+2, this.y-5],
-                                                            [this.x-3, this.y-4],   [this.x-2, this.y-4],   [this.x-1, this.y-4],   [this.x, this.y-4], [this.x+1, this.y-4],   [this.x+2, this.y-4],   [this.x+3, this.y-4],
-                                    [this.x-4, this.y-3],   [this.x-3, this.y-3],   [this.x-2, this.y-3],   [this.x-1, this.y-3],   [this.x, this.y-3], [this.x+1, this.y-3],   [this.x+2, this.y-3],   [this.x+3, this.y-3],   [this.x+4, this.y-3],
-            [this.x-5, this.y-2],   [this.x-4, this.y-2],   [this.x-3, this.y-2],   [this.x-2, this.y-2],   [this.x-1, this.y-2],   [this.x, this.y-2], [this.x+1, this.y-2],   [this.x+2, this.y-2],   [this.x+3, this.y-2],   [this.x+4, this.y-2],   [this.x+5, this.y-2],
-            [this.x-5, this.y-1],   [this.x-4, this.y-1],   [this.x-3, this.y-1],   [this.x-2, this.y-1],   [this.x-1, this.y-1],   [this.x, this.y-1], [this.x+1, this.y-1],   [this.x+2, this.y-1],   [this.x+3, this.y-1],   [this.x+4, this.y-1],   [this.x+5, this.y-1],
-            [this.x-5, this.y],     [this.x-4, this.y],     [this.x-3, this.y],     [this.x-2, this.y],                             [this.x, this.y],   [this.x+1, this.y],     [this.x+2, this.y],     [this.x+3, this.y],     [this.x+4, this.y],     [this.x+5, this.y],
-            [this.x-5, this.y+1],   [this.x-4, this.y+1],   [this.x-3, this.y+1],   [this.x-2, this.y+1],   [this.x-1, this.y+1],   [this.x, this.y+1], [this.x+1, this.y+1],   [this.x+2, this.y+1],   [this.x+3, this.y+1],   [this.x+4, this.y+1],   [this.x+5, this.y+1],
-            [this.x-5, this.y+2],   [this.x-4, this.y+2],   [this.x-3, this.y+2],   [this.x-2, this.y+2],   [this.x-1, this.y+2],   [this.x, this.y+2], [this.x+1, this.y+2],   [this.x+2, this.y+2],   [this.x+3, this.y+2],   [this.x+4, this.y+2],   [this.x+5, this.y+2],
-                                    [this.x-4, this.y+3],   [this.x-3, this.y+3],   [this.x-2, this.y+3],   [this.x-1, this.y+3],   [this.x, this.y+3], [this.x+1, this.y+3],   [this.x+2, this.y+3],   [this.x+3, this.y+3],   [this.x+4, this.y+3],
-                                                            [this.x-3, this.y+4],   [this.x-2, this.y+4],   [this.x-1, this.y+4],   [this.x, this.y+4], [this.x+1, this.y+4],   [this.x+2, this.y+4],   [this.x+3, this.y+4],
-                                                                                    [this.x-2, this.y+5],   [this.x-1, this.y+5],   [this.x, this.y+5], [this.x+1, this.y+5],   [this.x+2, this.y-5],
-
-        ];
+        this.radius_5();
         var TargetNei = [];
-        this.directions = Clear(this.directions);
+        this.Clear();
         
         if (this.o == 3) {
             for (var i in this.directions) {
@@ -62,13 +44,13 @@ module.exports = class ArmedMan extends parent{
         this.TargetNei = this.GetTarget();
 
         if(this.TargetNei){
-            this.Target = random(this.TargetNei);
+            this.Target = this.Random(this.TargetNei);
             matrix[this.Target[1]][this.Target[0]] = 0;
             if(this.o == 3){
-                RemoveFromArray(this.Target,Arr_MeatEater);
+               this.RemoveFromArray(this.Target,Arr_MeatEater);
             }
             else{
-                RemoveFromArray(this.Target,Arr_GrassEater);
+               this.RemoveFromArray(this.Target,Arr_GrassEater);
             }
         }
     }
@@ -90,24 +72,24 @@ module.exports = class ArmedMan extends parent{
         }
 
         if (this.x == -1 || this.x == x || this.y == -1 || this.y == y) {
-            RemoveFromArray([this.x,this.y],Arr_ArmedMan);
+            this.RemoveFromArray([this.x,this.y],Arr_ArmedMan);
             return;
         }
 
         if(matrix[this.y][this.x]==1){
-            RemoveFromArray([this.x,this.y],Arr_Grass);
+           this.RemoveFromArray([this.x,this.y],Arr_Grass);
         }
         else if(matrix[this.y][this.x]==2){
-            RemoveFromArray([this.x,this.y],Arr_GrassEater);
+           this.RemoveFromArray([this.x,this.y],Arr_GrassEater);
         }
         else if(matrix[this.y][this.x]==3){
-            RemoveFromArray([this.x,this.y],Arr_MeatEater);
+           this.RemoveFromArray([this.x,this.y],Arr_MeatEater);
         }
         else if(floor(matrix[this.y][this.x])==5){
-            RemoveFromArray([this.x,this.y],Arr_TimedBomb);
+           this.RemoveFromArray([this.x,this.y],Arr_TimedBomb);
         }
         else if(matrix[this.y][this.y]==6){
-            RemoveFromArray([this.x,this.y],Arr_ArmedMan);
+           this.RemoveFromArray([this.x,this.y],Arr_ArmedMan);
             return;
         }
         matrix[this.y][this.x]=4;

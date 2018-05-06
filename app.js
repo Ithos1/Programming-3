@@ -2,11 +2,6 @@ var express = require("express");
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var Grass = require("./Classes/grass");
-var GrassEater = require("./Classes/GR-E");
-var MeatEater = require("./Classes/MT-E");
-var ArmedMan = require("./Classes/AR-M");
-var TimedBomb = require("./Classes/TB");
 var Functions = require("./Classes/Functions");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
@@ -46,23 +41,6 @@ var Arr_TimedBomb = [];
 var Arr_ToxicGas = [];
 
 
-
-
-
-
-app.use(express.static("public"));
-
-app.get("/", function(req, res){
-   res.redirect("public");
-});
-
-app.listen(3000, function(){
-   console.log("Example is running on port 3000");
-});
-
-
-
-
 matrix = [];
 x = 60;
 y = 60;
@@ -81,7 +59,12 @@ for (var i = 0; i < y; i++) {
     }
 }
 
-
+var Grass = require("./Classes/grass");
+var GrassEater = require("./Classes/GR-E");
+var MeatEater = require("./Classes/MT-E");
+var ArmedMan = require("./Classes/AR-M");
+var TimedBomb = require("./Classes/TB");
+var Parent = require("./Classes/parent");
 //Setup-1
 
  
@@ -92,6 +75,7 @@ for (var i = 0; i < y; i++) {
         if (matrix[i][j] == 0) {
             matrix[i][j] = 1;
             Arr_Grass.push(new Grass(j, i));
+
             o--;
         }
     }
@@ -138,7 +122,7 @@ function DrawInServer(){
         count_m=0;
         x_m = true_false[Math.round(Math.random())];
         if(x_m){
-            y_m1 = Math.round(random( 0, (y-1) ) );
+            y_m1 = Math.round(Math.random( 0, (y-1) ) );
             y_m = true_false[Math.round(Math.random())];
             if(y_m){
                 x_m1 = 0;
@@ -148,7 +132,7 @@ function DrawInServer(){
             }
         }
         else{
-            x_m1 = Math.round(random( 0, (x-1)));
+            x_m1 = Math.round(Math.random( 0, (x-1)));
             y_m = true_false[Math.round(Math.random())];
             if(y_m){
                 y_m1 = 0;
@@ -176,19 +160,19 @@ function DrawInServer(){
         }
 
         if(matrix[y_m1][x_m1]==1){
-                RemoveFromArray([x_m1,y_m1],Arr_Grass);
+               this.RemoveFromArray([x_m1,y_m1],Arr_Grass);
             }
             else if(matrix[y_m1][x_m1]==2){
-                RemoveFromArray([x_m1,y_m1],Arr_GrassEater);
+               this.RemoveFromArray([x_m1,y_m1],Arr_GrassEater);
             }
             else if(matrix[y_m1][x_m1]==3){
-                RemoveFromArray([x_m1,y_m1],Arr_MeatEater);
+               this.RemoveFromArray([x_m1,y_m1],Arr_MeatEater);
             }
             else if(floor(matrix[y_m1][x_m1])==5){
-                RemoveFromArray([x_m1,y_m1],Arr_TimedBomb);
+               this.RemoveFromArray([x_m1,y_m1],Arr_TimedBomb);
             }
             else if(floor(matrix[y_m1][x_m1])==6){
-                RemoveFromArray([x_m1,y_m1],Arr_ToxicGas);
+               this.RemoveFromArray([x_m1,y_m1],Arr_ToxicGas);
             }
     }
 
@@ -197,6 +181,9 @@ function DrawInServer(){
 
     //Meat-eater
     for (i in Arr_MeatEater) {
+        if(Arr_MeatEater[i].G==null){
+            Arr_MeatEater[i].Choose_G();
+        }
         Arr_MeatEater[i].Move();
         if (Arr_MeatEater[i].Target) {
             if (Arr_MeatEater[i].Energy <= 0) {
@@ -218,6 +205,9 @@ function DrawInServer(){
 
     //Grass-eater
     for (i in Arr_GrassEater) {
+        if(Arr_GrassEater[i].G==null){
+            Arr_GrassEater[i].Choose_G();
+        }
         Arr_GrassEater[i].Move();
         if (Arr_GrassEater[i].Target) {
             if (Arr_GrassEater[i].Energy <= 0) {
@@ -252,19 +242,19 @@ function DrawInServer(){
             matrix[y0][x0]=5;
 
             if(matrix[y0][x0]==1){
-                RemoveFromArray([x0,y0],Arr_Grass);
+               this.RemoveFromArray([x0,y0],Arr_Grass);
             }
             else if(matrix[y0][x0]==2){
-                RemoveFromArray([x0,y0],Arr_GrassEater);
+               this.RemoveFromArray([x0,y0],Arr_GrassEater);
             }
             else if(matrix[y0][x0]==3){
-                RemoveFromArray([x0,y0],Arr_MeatEater);
+               this.RemoveFromArray([x0,y0],Arr_MeatEater);
             }
             else if(matrix[y0][x0]==4){
-                RemoveFromArray([x0,y0],Arr_ArmedMan);
+               this.RemoveFromArray([x0,y0],Arr_ArmedMan);
             }
             else if(floor(matrix[y0][x0])==6){
-                RemoveFromArray([x0,y0],Arr_ToxicGas);
+               this.RemoveFromArray([x0,y0],Arr_ToxicGas);
             }
     }
 
@@ -279,8 +269,19 @@ function DrawInServer(){
 
 //Server
 
+app.use(express.static("./public"));
+
+app.get("/", function(req, res){
+   res.redirect("./public");
+});
+
+app.listen(3000, function(){
+   console.log("Example is running on port 3000");
+});
+
 io.on('connection', function(socket){
-    sockets.emit('Draw',matrix);
+    sockets.emit("initiate",matrix);
     setInterval(DrawInServer, 500);
-}
+    }
 );
+

@@ -1,15 +1,10 @@
-var Functions = require("./Functions");
-var RemoveFromArray = Functions.Func1;
-var Clear = Functions.Func2;
-
 var parent = require("./parent.js");
 
 
-modules.export =class ToxicGas extends parent{
+module.exports =class ToxicGas extends parent{
 
     constructor(x_y,dir){
-        this.x=x_y[0];
-        this.y=x_y[1];
+        super(x_y[0],x_y[1]);
         this.Direction=dir;
         this.Timer = 3;
     }
@@ -18,7 +13,7 @@ modules.export =class ToxicGas extends parent{
     Move(){
 
         if (this.x == -1 || this.x == x || this.y == -1 || this.y == y) {
-            RemoveFromArray([this.x,this.y],Arr_ToxicGas);
+           this.RemoveFromArray([this.x,this.y],Arr_ToxicGas);
             return;
         }
 
@@ -45,21 +40,21 @@ modules.export =class ToxicGas extends parent{
             }
 
             if (this.x == -1 || this.x == x || this.y == -1 || this.y == y) {
-                RemoveFromArray([this.x,this.y],Arr_ToxicGas);
+               this.RemoveFromArray([this.x,this.y],Arr_ToxicGas);
                 return;
             }
 
             if(matrix[this.y][this.x]==1){
-                RemoveFromArray([this.x,this.y],Arr_Grass);
+               this.RemoveFromArray([this.x,this.y],Arr_Grass);
             }
             else if(matrix[this.y][this.x]==2){
-                RemoveFromArray([this.x,this.y],Arr_GrassEater);
+               this.RemoveFromArray([this.x,this.y],Arr_GrassEater);
             }
             else if(matrix[this.y][this.x]==3){
-                RemoveFromArray([this.x,this.y],Arr_MeatEater);
+               this.RemoveFromArray([this.x,this.y],Arr_MeatEater);
             }
             else if(matrix[this.y][this.y]==4){
-                RemoveFromArray([this.x,this.y],Arr_ArmedMan);
+               this.RemoveFromArray([this.x,this.y],Arr_ArmedMan);
             }
             else if(floor(matrix[this.y][this.x])==5){
                 return;
@@ -68,7 +63,7 @@ modules.export =class ToxicGas extends parent{
         }
         else{
             matrix[this.y][this.x]=0;
-            RemoveFromArray([this.x,this.y],Arr_ToxicGas);
+           this.RemoveFromArray([this.x,this.y],Arr_ToxicGas);
         }
     }
 

@@ -1,7 +1,10 @@
-modules.export = class Parent{
+module.exports = class Parent{
     constructor(x,y){
         this.x=x;
         this.y=y;
+        this.directions;
+        this.r = null;
+        this.G = null;
     }
 
     radius_1_sml(){
@@ -31,6 +34,37 @@ modules.export = class Parent{
             [this.x-2,this.y+2],    [this.x-1,this.y+2],    [this.x,this.y+2],      [this.x+1,this.y+2],    [this.x+2,this.y+2],                
                                     [this.x-1,this.y+1],    [this.x,this.y+1],      [this.x+1,this.y+1]
         ];
+    }
+    radius_3(){this.directions = [
+                [this.x + 2, this.y + 2],
+                [this.x + 2, this.y + 1],
+                [this.x + 2, this.y],
+                [this.x + 2, this.y - 1],
+                [this.x + 2, this.y - 2],
+                [this.x + 1, this.y + 2],
+                [this.x + 1, this.y + 1],
+                [this.x + 1, this.y],
+                [this.x + 1, this.y - 1],
+                [this.x + 1, this.y - 2],
+                [this.x, this.y + 2],
+                [this.x, this.y + 1],
+                [this.x, this.y - 1],
+                [this.x, this.y - 2],
+                [this.x - 1, this.y + 2],
+                [this.x - 1, this.y + 1],
+                [this.x - 1, this.y],
+                [this.x - 1, this.y - 1],
+                [this.x - 1, this.y - 2],
+                [this.x - 2, this.y + 2],
+                [this.x - 2, this.y + 1],
+                [this.x - 2, this.y],
+                [this.x - 2, this.y - 1],
+                [this.x - 2, this.y - 2],
+                [this.x + 3, this.y],
+                [this.x - 3, this.y],
+                [this.x, this.y + 3],
+                [this.x, this.y - 3]
+            ];
     }
     radius_4(){
         this.directions = [
@@ -64,7 +98,7 @@ modules.export = class Parent{
     }
 
 
-    RemoveFromArray(coords, array){
+   RemoveFromArray(coords, array){
         for (var i in array) {
             if (array[i].x == coords[0] && array[i].y == coords[1]) {
                 array.splice(i, 1);
@@ -72,6 +106,8 @@ modules.export = class Parent{
             }
         }
     }
+
+    //FindFromArray(coords,)
 
     Clear(){
         var ret = [];
@@ -81,5 +117,30 @@ modules.export = class Parent{
             }
         }
         return ret;
+    }
+
+    Random(A=1,B=0){
+        if(typeof(A)==Array){
+            return A[Math.round(Math.random()*A.length)];
+        }
+        else{
+            if(B>A){
+                return ((Math.round(Math.random()*B))+A);
+            }
+            else{
+                return ((Math.round(Math.random()*A))+B);
+            }
+        }
+    }
+
+    Choose_G(){
+        this.r = this.Random()/2;
+        if(this.r==0.5){
+            this.G = "female";
+        }
+        else{
+            this.G = "male";
+        }
+        matrix[this.y][this.x]+=this.r;
     }
 };
