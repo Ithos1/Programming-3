@@ -2,9 +2,10 @@ var Functions = require("./Functions");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
 
-var TimedBomb = require('./TB.js');
+var parent = require("./parent.js");
 
-class ToxicGas{
+
+modules.export =class ToxicGas extends parent{
 
     constructor(x_y,dir){
         this.x=x_y[0];

@@ -2,7 +2,9 @@ var Functions = require("./Functions");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
 
-module.exports = class GrassEater {
+var parent = require("./parent.js");
+
+module.exports = class GrassEater extends parent{
 
     constructor(x1, y1) {
         this.Energy = 0;

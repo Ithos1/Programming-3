@@ -2,8 +2,10 @@ var Functions = require("./Functions");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
 
+var parent = require("./parent.js");
 
-module.exports = class ArmedMan{
+
+module.exports = class ArmedMan extends parent{
     
     constructor(x1,y1, dir){
         this.x = x1;

@@ -19,9 +19,18 @@ var Weather = {
                 break;
             case Psb_S[3]:
                 
-        }
+        };
     },
-    Weather_Chane:function(){
-
-    }
+    Weather_Change:function(){
+        switch(Season){
+            case Psb_S[0]:
+                break;
+            case Psb_S[1]:
+                break;
+            case Psb_S[2]:
+                break;
+            case Psb_S[3]:
+            
+        };
+    },
 };

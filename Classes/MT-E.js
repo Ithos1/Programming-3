@@ -2,7 +2,9 @@ var Functions = require("./Functions");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
 
-module.exports = class MeatEater { 
+var parent = requier("./parent.js");
+
+module.exports = class MeatEater extends parent{ 
 
     constructor(x1,y1){
         this.Energy = 0;

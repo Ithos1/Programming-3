@@ -1,4 +1,7 @@
-module.exports = class Grass {
+
+var parent = require("./parent.js");
+
+module.exports = class Grass extends parent{
     constructor(x1, y1) {
         this.SpreadingTemp = 2;
         this.TargetNei = [];
