@@ -5,21 +5,8 @@ module.exports = class TimedBomb extends parent{
         super(x1,y1);
         this.Direction = this.Random(["east","west","north","south"]);
         this.Timer = Math.round(this.Random(5,10));
-
-        //Radius 4 circle
-
-        this.directions = [
-                                                                                    [this.x-2, this.y-4],   [this.x-1, this.y-4],   [this.x, this.y-4], [this.x+1, this.y-4],   [this.x+2, this.y-4],
-                                                            [this.x-3, this.y-3],   [this.x-2, this.y-3],   [this.x-1, this.y-3],   [this.x, this.y-3], [this.x+1, this.y-3],   [this.x+2, this.y-3],   [this.x+3, this.y-3],
-                                    [this.x-4, this.y-2],   [this.x-3, this.y-2],   [this.x-2, this.y-2],   [this.x-1, this.y-2],   [this.x, this.y-2], [this.x+1, this.y-2],   [this.x+2, this.y-2],   [this.x+3, this.y-2],   [this.x+4, this.y-2],
-                                    [this.x-4, this.y-1],   [this.x-3, this.y-1],   [this.x-2, this.y-1],   [this.x-1, this.y-1],   [this.x, this.y-1], [this.x+1, this.y-1],   [this.x+2, this.y-1],   [this.x+3, this.y-1],   [this.x+4, this.y-1],
-                                    [this.x-4, this.y],     [this.x-3, this.y],     [this.x-2, this.y],     [this.x-1, this.y],       [this.x, this.y],   [this.x+1, this.y],     [this.x+2, this.y],     [this.x+3, this.y],     [this.x+4, this.y],
-                                    [this.x-4, this.y+1],   [this.x-3, this.y+1],   [this.x-2, this.y+1],   [this.x-1, this.y+1],   [this.x, this.y+1], [this.x+1, this.y+1],   [this.x+2, this.y+1],   [this.x+3, this.y+1],   [this.x+4, this.y+1],
-                                    [this.x-4, this.y+2],   [this.x-3, this.y+2],   [this.x-2, this.y+2],   [this.x-1, this.y+2],   [this.x, this.y+2], [this.x+1, this.y+2],   [this.x+2, this.y+2],   [this.x+3, this.y+2],   [this.x+4, this.y+2],
-                                                            [this.x-3, this.y+3],   [this.x-2, this.y+3],   [this.x-1, this.y+3],   [this.x, this.y+3], [this.x+1, this.y+3],   [this.x+2, this.y+3],   [this.x+3, this.y+3],
-                                                                                    [this.x-2, this.y+4],   [this.x-1, this.y+4],   [this.x, this.y+4], [this.x+1, this.y+4],   [this.x+2, this.y+4]
-
-        ];
+        
+        this.radius_4();
         this.Clear();
     }
 
@@ -59,13 +46,7 @@ module.exports = class TimedBomb extends parent{
 
 
     ReleaseToxicGas(){
-        this.directions = [
-                                    [this.x,this.y-2],      [this.x+1,this.y-2],    [this.x+2,this.y-2],                
-            [this.x-2,this.y-1],    [this.x-1,this.y-1],    [this.x,this.y-1],      [this.x+1,this.y-1],    [this.x+2,this.y-1],
-            [this.x-2,this.y],      [this.x-1,this.y],      [this.x,this.y],        [this.x+1,this.y],      [this.x+2,this.y],
-            [this.x-2,this.y+2],    [this.x-1,this.y+2],    [this.x,this.y+2],      [this.x+1,this.y+2],    [this.x+2,this.y+2],                
-                                    [this.x-1,this.y+1],    [this.x,this.y+1],      [this.x+1,this.y+1]
-        ];
+        this.radius_2();
         this.Clear();
         for(var i in this.directions){
             matrix[this.directions[i][1]][this.directions[i][0]]=6;

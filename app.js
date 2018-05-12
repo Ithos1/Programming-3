@@ -3,6 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var Functions = require("./Classes/Functions");
+var Parent = require("./Classes/parent");
 var RemoveFromArray = Functions.Func1;
 var Clear = Functions.Func2;
 
@@ -41,7 +42,7 @@ var Arr_TimedBomb = [];
 var Arr_ToxicGas = [];
 
 
-public matrix = [];
+matrix = [];
 x = 60;
 y = 60;
 side = 15;
@@ -64,7 +65,7 @@ var GrassEater = require("./Classes/GR-E");
 var MeatEater = require("./Classes/MT-E");
 var ArmedMan = require("./Classes/AR-M");
 var TimedBomb = require("./Classes/TB");
-var Parent = require("./Classes/parent");
+
 //Setup-1
 
  
