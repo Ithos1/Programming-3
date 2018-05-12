@@ -1,4 +1,4 @@
-var express = require("express");
+var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -41,7 +41,7 @@ var Arr_TimedBomb = [];
 var Arr_ToxicGas = [];
 
 
-matrix = [];
+public matrix = [];
 x = 60;
 y = 60;
 side = 15;
@@ -275,12 +275,12 @@ app.get("/", function(req, res){
    res.redirect("./public");
 });
 
-app.listen(3000, function(){
+server.listen(3000, function(){
    console.log("Example is running on port 3000");
 });
 
 io.on('connection', function(socket){
-    sockets.emit("initiate",matrix);
+    socket.emit("initiate",matrix);
     setInterval(DrawInServer, 500);
     }
 );
