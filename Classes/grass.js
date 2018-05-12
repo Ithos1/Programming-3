@@ -12,16 +12,6 @@ module.exports = class Grass extends parent{
 
     }
 
-    GetTarget() {
-        this.TargetNei = [];
-        this.directions = this.Clear();
-        for (var i in this.directions) {
-            if (matrix[this.directions[i][1]][this.directions[i][0]] == 0) {
-                this.TargetNei.push(this.directions[i]);
-            }
-        }
-    }
-
     Spread() {
         if (this.Count >= this.SpreadingTemp) {
             this.GetTarget();

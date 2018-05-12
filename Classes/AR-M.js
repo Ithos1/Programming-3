@@ -10,40 +10,13 @@ module.exports = class ArmedMan extends parent{
         
     }
 
-    GetTarget() {
-        this.o = 3;
-
-        //Radius 5 circle
-
-        this.radius_5();
-        var TargetNei = [];
-        this.Clear();
-        
-        if (this.o == 3) {
-            for (var i in this.directions) {
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 3) {
-                    TargetNei.push(this.directions[i]);
-                }
-            }
-            if (TargetNei[0]){ return TargetNei; }
-            else{ this.o--; }
-        }
-        if(this.o == 2){
-            for (var i in this.directions){
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 2) {
-                    TargetNei.push(this.directions[i]);
-                }
-            }
-            if (TargetNei[0]){ return TargetNei; }
-            else{return;}
-        }
-        
-    }
-
     Shoot() {
-        this.TargetNei = this.GetTarget();
-
-        if(this.TargetNei){
+        this.radius_5();
+        this.FindTarget(3,false);
+        if(this.TargetNei[1]==undefined){
+            this.FindTarget(2);
+        }
+        if(this.TargetNei[1]==undefined){
             this.Target = this.Random(this.TargetNei);
             matrix[this.Target[1]][this.Target[0]] = 0;
             if(this.o == 3){

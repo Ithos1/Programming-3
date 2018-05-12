@@ -10,36 +10,6 @@ module.exports = class GrassEater extends parent{
         this.Target = false;
     }
 
-    GetTarget(o) {
-        this.Target = false;
-        this.radius_1();
-        this.TargetNei = [];
-        this.directions = this.Clear();
-        if (o == 1) {
-            for (var i in this.directions) {
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 1) { this.Target = true; }
-            }
-        }
-        else if(o == 0){
-            this.radius_3();
-            for (var i in this.directions) {
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 1) {
-                    this.TargetNei.push(this.directions[i]);
-                }
-                else if (!this.Target && matrix[this.directions[i][1]][this.directions[i][0]] == 0) {
-                    this.TargetNei.push(this.directions[i]);
-                }
-            }
-        }
-        else if(o==2.5){
-            for (var i in this.directions){
-                if(matrix[this.directions[i][1]][this.directions[i][0]] == 2.5){
-                    this.TargetNei.push(this.directions[i]);
-                }
-            }
-        }
-    }
-
     Move() {
         this.GetTarget(1);
         //console.log(this.TargetNei);

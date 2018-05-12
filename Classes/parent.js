@@ -3,6 +3,7 @@ module.exports = class Parent{
         this.x=x;
         this.y=y;
         this.directions;
+        this.TargetNei = [];
         this.r = null;
         this.G = null;
     }
@@ -104,6 +105,30 @@ module.exports = class Parent{
                                                                                     [this.x-2, this.y+5],   [this.x-1, this.y+5],   [this.x, this.y+5], [this.x+1, this.y+5],   [this.x+2, this.y-5],
 
         ];
+    }
+
+    FindTarget(Target_id, Searchelse = true){
+        this.Target = false;
+        for(var i in this.directions){
+            if(floor(matrix[this.directions[i][1]][this.directions[i][0]]==food_id)){
+                this.Target = true;
+                break;
+            }
+        }
+        if(this.Target){
+            for(var i in this.directions){
+                if(floor(matrix[this.directions[i][1]][this.directions[i][0]]==food_id)){
+                    this.TargetNei.push(this.directions[i]);
+                }
+            }
+        }
+        else if(Searchelse){
+            for( var i in this.directions){
+                if(matrix[this.directions[i][1]][this.directions[i][0]]==0){
+                    this.TargetNei.push(this.directions[i]);
+                }
+            }
+        }
     }
 
 

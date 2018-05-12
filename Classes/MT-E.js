@@ -13,48 +13,10 @@ module.exports = class MeatEater extends parent{
         this.Target_m = false;
     }
 
-    GetTarget(o) {
-        this.Target = false;
-        //For spread
-        if(o==0){
-            this.radius_1();
-        }
-        else{
-            this.radius_3();
-        }
-        this.TargetNei = [];
-        this.Clear();
-        if (o == 1) {
-            for (var i in this.directions) {
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 4){
-                    this.Target = true;
-                    this.Target_m = true;
-                    break;
-                }
-                if (matrix[this.directions[i][1]][this.directions[i][0]] == 2) {
-                    this.Target = true; 
-                    break;
-                }
-            }
-        }
-        for (var i in this.directions) {
-            if (this.Target_m && matrix[this.directions[i][1]][this.directions[i][0]] == 4){
-                this.TargetNei.push(this.directions[i]);
-            }
-            if (matrix[this.directions[i][1]][this.directions[i][0]] == 2 && !this.Target_m) {
-                this.TargetNei.push(this.directions[i]);
-            }
-            else if (!this.Target &&  (matrix[this.directions[i][1]][this.directions[i][0]] == 1 || matrix[this.directions[i][1]][this.directions[i][0]] == 0) ) {
-                this.TargetNei.push(this.directions[i]);
-            }
-        }
-    }
 
     Move() {
         this.GetTarget(1);
-        //console.log(this.TargetNei);
         var i = this.Random(this.TargetNei);
-        //console.log(this.x, this.y);
         if (i) {
             matrix[i[1]][i[0]] = 3;
             matrix[this.y][this.x] = 0;
